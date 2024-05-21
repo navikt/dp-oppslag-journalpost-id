@@ -13,6 +13,7 @@ repositories {
     maven {
         url = uri("https://github-package-registry-mirror.gc.nav.no/cached/maven-release")
     }
+    maven("https://jitpack.io")
 }
 
 dependencies {
@@ -22,7 +23,7 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 tasks.test {
@@ -36,14 +37,21 @@ tasks.test {
 }
 
 configure<SpotlessExtension> {
+    val ktlintVersion = "1.1.1"
+
     kotlin {
-        ktlint()
+        ktlint(ktlintVersion)
     }
 
     kotlinGradle {
-        ktlint()
+        ktlint(ktlintVersion)
     }
 }
+
+tasks.withType<Jar>().configureEach {
+    dependsOn("test")
+}
+
 
 tasks.withType<KotlinCompile>().configureEach {
     dependsOn("spotlessApply")
