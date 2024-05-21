@@ -1,25 +1,31 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: dp-service-template
+  name: dp-oppslag-journalpost-id
   namespace: teamdagpenger
   labels:
     team: teamdagpenger
 spec:
   image: {{ image }}
   port: 8080
+  liveness:
+    path: /isalive
+  readiness:
+    path: /isready
   prometheus:
     enabled: true
     path: /metrics
   replicas:
-    min: 2
-    max: 3
+    min: 1
+    max: 1
   resources:
     limits:
-      cpu: 500m
       memory: 512Mi
     requests:
-      cpu: 200m
       memory: 256Mi
   secureLogs:
     enabled: true
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: java
