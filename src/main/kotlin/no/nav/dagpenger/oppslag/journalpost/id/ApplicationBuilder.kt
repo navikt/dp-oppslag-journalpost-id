@@ -15,8 +15,8 @@ internal class ApplicationBuilder(config: Map<String, String>) : RapidsConnectio
         RapidApplication.Builder(RapidApplication.RapidApplicationConfig.fromEnv(config))
             .withKtorModule {
                 journalpostApi(repository)
-            }.build().also {
-                InnsendingFerdigstilMottak(it, repository)
+            }.build().also { rapidsConnection ->
+                InnsendingFerdigstiltMottak(rapidsConnection, repository)
             }
 
     init {

@@ -9,7 +9,7 @@ import no.nav.helse.rapids_rivers.testsupport.TestRapid
 import org.junit.jupiter.api.Test
 import java.util.UUID
 
-class InnsendingFerdigstilMottakTest {
+class InnsendingFerdigstiltMottakTest {
     private val testRapid = TestRapid()
 
     @Test
@@ -19,7 +19,7 @@ class InnsendingFerdigstilMottakTest {
                 every { it.lagre(any(), any()) } just runs
             }
 
-        InnsendingFerdigstilMottak(testRapid, repository)
+        InnsendingFerdigstiltMottak(testRapid, repository)
 
         //language=JSON
         testRapid.sendTestMessage(
