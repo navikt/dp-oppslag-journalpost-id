@@ -10,8 +10,10 @@ import java.util.UUID
 
 private val logger = KotlinLogging.logger { }
 
-class InnsendingFerdigstiltMottak(rapidsConnection: RapidsConnection, private val journalpostRepository: JournalpostRepository) :
-    River.PacketListener {
+class InnsendingFerdigstiltMottak(
+    rapidsConnection: RapidsConnection,
+    private val journalpostRepository: JournalpostRepository,
+) : River.PacketListener {
     init {
         River(rapidsConnection).apply {
             validate { it.demandValue("@event_name", "innsending_ferdigstilt") }
