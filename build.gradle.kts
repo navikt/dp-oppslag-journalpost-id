@@ -18,6 +18,7 @@ dependencies {
     testImplementation(libs.kotest.assertions.core)
     testImplementation("io.ktor:ktor-server-test-host-jvm:${libs.versions.ktor.get()}")
     testImplementation(libs.bundles.postgres.test)
+    testImplementation(libs.mock.oauth2.server)
 }
 
 application {

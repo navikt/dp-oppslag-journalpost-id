@@ -2,6 +2,7 @@ package no.nav.dagpenger.oppslag.journalpost.id
 
 import mu.KotlinLogging
 import no.nav.dagpenger.oppslag.journalpost.id.PostgresDataSourceBuilder.runMigration
+import no.nav.dagpenger.oppslag.journalpost.id.api.journalpostApi
 import no.nav.helse.rapids_rivers.RapidApplication
 import no.nav.helse.rapids_rivers.RapidsConnection
 
