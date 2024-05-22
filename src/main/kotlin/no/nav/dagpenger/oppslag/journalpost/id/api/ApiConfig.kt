@@ -3,11 +3,10 @@ package no.nav.dagpenger.oppslag.journalpost.id.api
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.auth.Authentication
+import io.ktor.server.auth.jwt.JWTPrincipal
+import io.ktor.server.auth.jwt.jwt
 import io.ktor.server.plugins.callloging.CallLogging
 import io.ktor.server.request.document
-import mu.KotlinLogging
-
-private val sikkerLogger = KotlinLogging.logger("tjenestekall")
 
 fun Application.apiConfig() {
     install(CallLogging) {
@@ -22,6 +21,11 @@ fun Application.apiConfig() {
     }
 
     install(Authentication) {
-        jwt("azureAd")
+        jwt("azureAd") {
+            verifier(AzureAd)
+            validate { jwtClaims ->
+                JWTPrincipal(jwtClaims.payload)
+            }
+        }
     }
 }
