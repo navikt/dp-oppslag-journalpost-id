@@ -1,11 +1,14 @@
 package no.nav.dagpenger.oppslag.journalpost.id
 
 import com.fasterxml.jackson.databind.JsonNode
+import mu.KotlinLogging
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
 import java.util.UUID
+
+private val logger = KotlinLogging.logger { }
 
 class InnsendingFerdigstilMottak(rapidsConnection: RapidsConnection, private val repository: Repository) :
     River.PacketListener {
@@ -24,8 +27,8 @@ class InnsendingFerdigstilMottak(rapidsConnection: RapidsConnection, private val
     ) {
         val journalpostId = packet["journalpostId"].asText()
         val søknadId = packet["søknadsData.søknad_uuid"].asUUID()
-
         repository.lagre(søknadId, journalpostId)
+        logger.info { "Lagret $søknadId -> $journalpostId" }
     }
 }
 
