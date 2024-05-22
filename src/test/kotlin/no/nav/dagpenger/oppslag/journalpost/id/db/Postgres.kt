@@ -24,18 +24,17 @@ internal object Postgres {
         return PostgresDataSourceBuilder.dataSource
     }
 
-    fun setup() {
+    private fun setup() {
         System.setProperty(ConfigUtils.CLEAN_DISABLED, "false")
-        System.setProperty(PostgresDataSourceBuilder.DB_URL_KEY, instance.jdbcUrl)
-        System.setProperty(PostgresDataSourceBuilder.DB_USERNAME_KEY, instance.username)
-        System.setProperty(PostgresDataSourceBuilder.DB_PASSWORD_KEY, instance.password)
+        System.setProperty(
+            PostgresDataSourceBuilder.DB_JDBC_URL_KEY,
+            instance.jdbcUrl + "&user=${instance.username}&password=${instance.password}",
+        )
     }
 
-    fun tearDown() {
-        System.clearProperty(PostgresDataSourceBuilder.DB_URL_KEY)
-        System.clearProperty(PostgresDataSourceBuilder.DB_USERNAME_KEY)
-        System.clearProperty(PostgresDataSourceBuilder.DB_PASSWORD_KEY)
+    private fun tearDown() {
         System.clearProperty(ConfigUtils.CLEAN_DISABLED)
+        System.clearProperty(PostgresDataSourceBuilder.DB_JDBC_URL_KEY)
     }
 
     fun withCleanDb(block: () -> Unit) {
