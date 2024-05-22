@@ -4,5 +4,8 @@ db:
   tier: db-custom-2-7680
   type: POSTGRES_15
 
+ingresses: |
+  ingresses:
+    - https://dp-oppslag-journalpost-id.intern.nav.no
 
 kafka_pool: nav-prod
