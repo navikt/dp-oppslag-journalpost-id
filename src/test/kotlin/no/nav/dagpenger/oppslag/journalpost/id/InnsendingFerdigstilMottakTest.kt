@@ -36,6 +36,6 @@ class InnsendingFerdigstilMottakTest {
             """.trimIndent(),
         )
 
-        verify(exactly = 1) { repository.lagre("662317896", UUID.fromString("f0509e9a-f913-45cb-9aa7-ed7bafcb9e93")) }
+        verify(exactly = 1) { repository.lagre(UUID.fromString("f0509e9a-f913-45cb-9aa7-ed7bafcb9e93"), "662317896") }
     }
 }

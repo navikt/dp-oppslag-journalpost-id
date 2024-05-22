@@ -25,7 +25,7 @@ class InnsendingFerdigstilMottak(rapidsConnection: RapidsConnection, private val
         val journalpostId = packet["journalpostId"].asText()
         val søknadId = packet["søknadsData.søknad_uuid"].asUUID()
 
-        repository.lagre(journalpostId, søknadId)
+        repository.lagre(søknadId, journalpostId)
     }
 }
 

@@ -12,8 +12,11 @@ dependencies {
     implementation(libs.rapids.and.rivers)
     implementation(libs.konfig)
     implementation(libs.bundles.postgres)
+    implementation(libs.bundles.ktor.server)
 
     testImplementation(libs.mockk)
+    testImplementation(libs.kotest.assertions.core)
+    testImplementation("io.ktor:ktor-server-test-host-jvm:${libs.versions.ktor.get()}")
 }
 
 application {

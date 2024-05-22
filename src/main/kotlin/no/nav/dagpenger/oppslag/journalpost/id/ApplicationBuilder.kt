@@ -9,24 +9,34 @@ internal class ApplicationBuilder(config: Map<String, String>) : RapidsConnectio
         private val logger = KotlinLogging.logger { }
     }
 
+    val repository = InmemoryRepository()
+
     private val rapidsConnection: RapidsConnection =
         RapidApplication.Builder(RapidApplication.RapidApplicationConfig.fromEnv(config))
             .withKtorModule {
-            }.build()
+            }.build().also {
+                InnsendingFerdigstilMottak(it, repository)
+            }
 
     init {
         rapidsConnection.register(this)
     }
 
     fun start() {
-//        rapidsConnection.start()
+        rapidsConnection.start()
     }
 
     fun stop() {
-//        rapidsConnection.stop()
+        rapidsConnection.stop()
     }
 
     override fun onStartup(rapidsConnection: RapidsConnection) {
+        // runMigration()
         logger.info { "Starter opp dp-oppslag-journalpost-id" }
+    }
+
+    override fun onShutdown(rapidsConnection: RapidsConnection) {
+        logger.info { "Skrur av applikasjonen" }
+        stop()
     }
 }
