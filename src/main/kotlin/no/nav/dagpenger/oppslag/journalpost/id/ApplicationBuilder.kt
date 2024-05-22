@@ -1,6 +1,7 @@
 package no.nav.dagpenger.oppslag.journalpost.id
 
 import mu.KotlinLogging
+import no.nav.dagpenger.oppslag.journalpost.id.PostgresDataSourceBuilder.runMigration
 import no.nav.helse.rapids_rivers.RapidApplication
 import no.nav.helse.rapids_rivers.RapidsConnection
 
@@ -9,7 +10,7 @@ internal class ApplicationBuilder(config: Map<String, String>) : RapidsConnectio
         private val logger = KotlinLogging.logger { }
     }
 
-    val repository = InmemoryRepository()
+    val repository = InMemoryJournalpostRepository()
 
     private val rapidsConnection: RapidsConnection =
         RapidApplication.Builder(RapidApplication.RapidApplicationConfig.fromEnv(config))
@@ -32,7 +33,7 @@ internal class ApplicationBuilder(config: Map<String, String>) : RapidsConnectio
     }
 
     override fun onStartup(rapidsConnection: RapidsConnection) {
-        // runMigration()
+        runMigration()
         logger.info { "Starter opp dp-oppslag-journalpost-id" }
     }
 

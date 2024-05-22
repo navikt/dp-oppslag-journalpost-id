@@ -14,12 +14,12 @@ class InnsendingFerdigstiltMottakTest {
 
     @Test
     fun `Skal ta tak i riktige pakker`() {
-        val repository =
-            mockk<Repository>().also {
+        val journalpostRepository =
+            mockk<JournalpostRepository>().also {
                 every { it.lagre(any(), any()) } just runs
             }
 
-        InnsendingFerdigstiltMottak(testRapid, repository)
+        InnsendingFerdigstiltMottak(testRapid, journalpostRepository)
 
         //language=JSON
         testRapid.sendTestMessage(
@@ -36,6 +36,6 @@ class InnsendingFerdigstiltMottakTest {
             """.trimIndent(),
         )
 
-        verify(exactly = 1) { repository.lagre(UUID.fromString("f0509e9a-f913-45cb-9aa7-ed7bafcb9e93"), "662317896") }
+        verify(exactly = 1) { journalpostRepository.lagre(UUID.fromString("f0509e9a-f913-45cb-9aa7-ed7bafcb9e93"), "662317896") }
     }
 }

@@ -2,7 +2,7 @@ package no.nav.dagpenger.oppslag.journalpost.id
 
 import java.util.UUID
 
-interface Repository {
+interface JournalpostRepository {
     fun lagre(
         søknadId: UUID,
         journalpostId: String,
@@ -13,7 +13,7 @@ interface Repository {
     class JournalpostIkkeFunnet(msg: String) : RuntimeException(msg)
 }
 
-class InmemoryRepository : Repository {
+class InMemoryJournalpostRepository : JournalpostRepository {
     private val storage = mutableMapOf<UUID, String>()
 
     override fun lagre(
@@ -25,5 +25,5 @@ class InmemoryRepository : Repository {
 
     override fun hent(søknadId: UUID): String =
         storage[søknadId]
-            ?: throw Repository.JournalpostIkkeFunnet("Fant ikke journalpost for søknadId $søknadId")
+            ?: throw JournalpostRepository.JournalpostIkkeFunnet("Fant ikke journalpost for søknadId $søknadId")
 }

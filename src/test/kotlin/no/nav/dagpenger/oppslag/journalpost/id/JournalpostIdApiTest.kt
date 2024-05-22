@@ -10,16 +10,16 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Test
 import java.util.UUID.randomUUID
 
-class JournalpostidApiTest {
+class JournalpostIdApiTest {
     @Test
     fun `Skal kunne finne journalpost id fra søknad id`() {
         val journalpostId = "123"
         val søknadId = randomUUID()
         val repository =
-            InmemoryRepository().also {
+            InMemoryJournalpostRepository().also {
                 it.lagre(søknadId, journalpostId)
             }
-        withOppgaveApi(repository = repository) {
+        withOppgaveApi(journalpostRepository = repository) {
             client.get("v1/journalpost/$søknadId").let { response ->
                 response.status shouldBe HttpStatusCode.OK
                 response.bodyAsText() shouldBe journalpostId
@@ -29,11 +29,11 @@ class JournalpostidApiTest {
 }
 
 private fun withOppgaveApi(
-    repository: Repository = mockk<Repository>(relaxed = true),
+    journalpostRepository: JournalpostRepository = mockk<JournalpostRepository>(relaxed = true),
     test: suspend ApplicationTestBuilder.() -> Unit,
 ) {
     testApplication {
-        application { journalpostApi(repository) }
+        application { journalpostApi(journalpostRepository) }
         test()
     }
 }

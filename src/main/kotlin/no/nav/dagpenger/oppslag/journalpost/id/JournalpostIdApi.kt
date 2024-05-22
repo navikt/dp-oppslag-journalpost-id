@@ -10,13 +10,13 @@ import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
 import java.util.UUID
 
-fun Application.journalpostApi(repository: Repository) {
+fun Application.journalpostApi(journalpostRepository: JournalpostRepository) {
     apiConfig()
 
     routing {
         route("v1/journalpost/{søknadId}") {
             get {
-                call.respond(HttpStatusCode.OK, repository.hent(call.søknadId()))
+                call.respond(HttpStatusCode.OK, journalpostRepository.hent(call.søknadId()))
             }
         }
     }

@@ -10,7 +10,7 @@ import java.util.UUID
 
 private val logger = KotlinLogging.logger { }
 
-class InnsendingFerdigstiltMottak(rapidsConnection: RapidsConnection, private val repository: Repository) :
+class InnsendingFerdigstiltMottak(rapidsConnection: RapidsConnection, private val journalpostRepository: JournalpostRepository) :
     River.PacketListener {
     init {
         River(rapidsConnection).apply {
@@ -28,7 +28,7 @@ class InnsendingFerdigstiltMottak(rapidsConnection: RapidsConnection, private va
     ) {
         val journalpostId = packet["journalpostId"].asText()
         val søknadId = packet["søknadsData.søknad_uuid"].asUUID()
-        repository.lagre(søknadId, journalpostId)
+        journalpostRepository.lagre(søknadId, journalpostId)
         logger.info { "Lagret $søknadId -> $journalpostId" }
     }
 }
