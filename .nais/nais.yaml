@@ -29,3 +29,12 @@ spec:
     autoInstrumentation:
       enabled: true
       runtime: java
+  azure:
+    application:
+      enabled: true
+  accessPolicy:
+    inbound:
+      rules:
+        - application: dp-saksbehandling
+  kafka:
+    pool: {{ kafka_pool }}

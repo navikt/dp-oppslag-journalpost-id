@@ -1,0 +1,8 @@
+db:
+  highAvailability: true
+  pointInTimeRecovery: true
+  tier: db-custom-2-7680
+  type: POSTGRES_15
+
+
+kafka_pool: nav-prod
