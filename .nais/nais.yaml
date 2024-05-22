@@ -44,7 +44,7 @@ spec:
       - collation: nb_NO.UTF8
         databases:
           - envVarPrefix: DB
-            name: oppslag_journalpostid
+            name: oppslag-journalpostid
         diskAutoresize: true
         diskType: SSD
         highAvailability: {{ db.highAvailability }}
