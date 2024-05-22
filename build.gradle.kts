@@ -11,6 +11,9 @@ dependencies {
     implementation(libs.kotlin.logging)
     implementation(libs.rapids.and.rivers)
     implementation(libs.konfig)
+    implementation(libs.bundles.postgres)
+
+    testImplementation(libs.mockk)
 }
 
 application {
