@@ -11,7 +11,7 @@ import org.flywaydb.core.api.configuration.FluentConfiguration
 internal object PostgresDataSourceBuilder {
     const val DB_USERNAME_KEY = "DB_USERNAME"
     const val DB_PASSWORD_KEY = "DB_PASSWORD"
-    const val DB_URL_KEY = "DB_URL"
+    const val DB_URL_KEY = "DB_JDBC_URL"
 
     private fun getOrThrow(key: String): String = getEnv(key) ?: getSystemProperty(key)
 
