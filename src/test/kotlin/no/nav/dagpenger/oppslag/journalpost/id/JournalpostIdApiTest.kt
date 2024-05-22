@@ -10,6 +10,8 @@ import io.ktor.server.testing.ApplicationTestBuilder
 import io.ktor.server.testing.testApplication
 import io.mockk.mockk
 import no.nav.dagpenger.oppslag.journalpost.id.api.journalpostApi
+import no.nav.dagpenger.oppslag.journalpost.id.db.InMemoryJournalpostRepository
+import no.nav.dagpenger.oppslag.journalpost.id.db.JournalpostRepository
 import org.junit.jupiter.api.Test
 import java.util.UUID.randomUUID
 

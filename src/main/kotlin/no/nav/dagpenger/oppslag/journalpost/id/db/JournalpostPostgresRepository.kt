@@ -1,11 +1,11 @@
-package no.nav.dagpenger.oppslag.journalpost.id
+package no.nav.dagpenger.oppslag.journalpost.id.db
 
 import kotliquery.queryOf
 import kotliquery.sessionOf
 import java.util.UUID
 import javax.sql.DataSource
 
-class PostgresJournalpostRepository(private val dataSource: DataSource) : JournalpostRepository {
+class JournalpostPostgresRepository(private val dataSource: DataSource) : JournalpostRepository {
     override fun lagre(
         søknadId: UUID,
         journalpostId: String,

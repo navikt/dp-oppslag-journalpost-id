@@ -1,8 +1,10 @@
 package no.nav.dagpenger.oppslag.journalpost.id
 
 import mu.KotlinLogging
-import no.nav.dagpenger.oppslag.journalpost.id.PostgresDataSourceBuilder.runMigration
 import no.nav.dagpenger.oppslag.journalpost.id.api.journalpostApi
+import no.nav.dagpenger.oppslag.journalpost.id.db.JournalpostPostgresRepository
+import no.nav.dagpenger.oppslag.journalpost.id.db.PostgresDataSourceBuilder.dataSource
+import no.nav.dagpenger.oppslag.journalpost.id.db.PostgresDataSourceBuilder.runMigration
 import no.nav.helse.rapids_rivers.RapidApplication
 import no.nav.helse.rapids_rivers.RapidsConnection
 
@@ -11,7 +13,7 @@ internal class ApplicationBuilder(config: Map<String, String>) : RapidsConnectio
         private val logger = KotlinLogging.logger { }
     }
 
-    val repository = InMemoryJournalpostRepository()
+    val repository = JournalpostPostgresRepository(dataSource)
 
     private val rapidsConnection: RapidsConnection =
         RapidApplication.Builder(RapidApplication.RapidApplicationConfig.fromEnv(config))

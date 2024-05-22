@@ -1,4 +1,4 @@
-package no.nav.dagpenger.oppslag.journalpost.id
+package no.nav.dagpenger.oppslag.journalpost.id.db
 
 import ch.qos.logback.core.util.OptionHelper.getEnv
 import ch.qos.logback.core.util.OptionHelper.getSystemProperty

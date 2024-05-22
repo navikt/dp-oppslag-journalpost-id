@@ -1,4 +1,4 @@
-package no.nav.dagpenger.oppslag.journalpost.id
+package no.nav.dagpenger.oppslag.journalpost.id.db
 
 import com.zaxxer.hikari.HikariDataSource
 import org.flywaydb.core.internal.configuration.ConfigUtils
@@ -52,7 +52,7 @@ internal object Postgres {
         setup: () -> Unit,
         test: () -> Unit,
     ) {
-        this.setup()
+        Postgres.setup()
         PostgresDataSourceBuilder.clean().run {
             PostgresDataSourceBuilder.runMigrationTo(target)
             setup()

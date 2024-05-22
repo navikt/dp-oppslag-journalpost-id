@@ -9,7 +9,7 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.get
 import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
-import no.nav.dagpenger.oppslag.journalpost.id.JournalpostRepository
+import no.nav.dagpenger.oppslag.journalpost.id.db.JournalpostRepository
 import java.util.UUID
 
 fun Application.journalpostApi(journalpostRepository: JournalpostRepository) {

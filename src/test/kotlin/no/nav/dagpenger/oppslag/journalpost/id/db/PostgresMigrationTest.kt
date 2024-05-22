@@ -1,8 +1,8 @@
-package no.nav.dagpenger.oppslag.journalpost.id
+package no.nav.dagpenger.oppslag.journalpost.id.db
 
 import io.kotest.matchers.shouldBe
-import no.nav.dagpenger.oppslag.journalpost.id.Postgres.withCleanDb
-import no.nav.dagpenger.oppslag.journalpost.id.PostgresDataSourceBuilder.runMigration
+import no.nav.dagpenger.oppslag.journalpost.id.db.Postgres.withCleanDb
+import no.nav.dagpenger.oppslag.journalpost.id.db.PostgresDataSourceBuilder.runMigration
 import org.junit.jupiter.api.Test
 
 class PostgresMigrationTest {
