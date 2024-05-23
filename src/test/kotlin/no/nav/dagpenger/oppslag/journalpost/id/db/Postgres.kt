@@ -1,7 +1,6 @@
 package no.nav.dagpenger.oppslag.journalpost.id.db
 
 import com.zaxxer.hikari.HikariDataSource
-import org.flywaydb.core.internal.configuration.ConfigUtils
 import org.testcontainers.containers.PostgreSQLContainer
 
 internal object Postgres {
@@ -25,7 +24,6 @@ internal object Postgres {
     }
 
     private fun setup() {
-        System.setProperty(ConfigUtils.CLEAN_DISABLED, "false")
         System.setProperty(
             PostgresDataSourceBuilder.DB_JDBC_URL_KEY,
             instance.jdbcUrl + "&user=${instance.username}&password=${instance.password}",
@@ -33,7 +31,6 @@ internal object Postgres {
     }
 
     private fun tearDown() {
-        System.clearProperty(ConfigUtils.CLEAN_DISABLED)
         System.clearProperty(PostgresDataSourceBuilder.DB_JDBC_URL_KEY)
     }
 
