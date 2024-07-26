@@ -1,25 +1,25 @@
-# Dagpenger-SERVICENAME
+## dp-oppslag-journalpost-id
+
+## Formålet med appen
+Appen er en del av saksbehandlerflaten til dagpenger og brukes til å hente søknadens journalpost-id 
+ved å lytte på ```innsending_ferdigstilt``` hendelser som publiseres fra [dp-mottak](https://github.com/navikt/dp-mottak)
+
+JournalpostIdene blir lagret i en database og kan hentes ut via et REST-API. 
+I dag blir APIet brukt av [saksbehandlerflaten](https://github.com/navikt/dp-saksbehandling)
+
+### Begrensninger
+Appen er en midlertidig fiks for å vise en dagpengesøkers innsendte søknad i saksbehandlerflaten.
+Denne plukker kun opp journalpost-id for søknaden, og ikke øvrige innsendinger og ettersendelser.
+Saksbehandler må derfor finne øvrige dokumenter i Gosys manuelt, inntil en bedre løsning finnes 
+for alle journalførte dokumenter i dagpengesaken.
 
 ## Komme i gang
+Gradle brukes som byggverktøy og er bundlet inn. Spotless brukes til linting.
 
-Gradle brukes som byggverktøy og er bundlet inn.
+`./gradlew spotlessApply build`
 
-`./gradlew build`
+## Henvendelser 
+Spørsmål kan stilles som issues på github.
 
-## Sjekkliste for ny app
-1. Bytt navn på app i nais.yaml, settings.gradle og dockerfile.
-2. Fjern kommentering i deploy.yaml (står beskrevet hva man skal kommentere ut)
-3. Legge til deploysecreten i repoet.
-
----
-
-# Henvendelser
-
-Spørsmål knyttet til koden eller prosjektet kan rettes mot:
-
-* André Roaldseth, andre.roaldseth@nav.no
-* Eller en annen måte for omverden å kontakte teamet på
-
-## For NAV-ansatte
-
-Interne henvendelser kan sendes via Slack i kanalen #dagpenger.
+### For NAV-ansatte
+Interne henvendelser kan sendes via Slack i kanalen #team-dagpenger-saksbehandlerflate
