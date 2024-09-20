@@ -1,12 +1,12 @@
 package no.nav.dagpenger.oppslag.journalpost.id
 
+import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
 import io.mockk.runs
 import io.mockk.verify
 import no.nav.dagpenger.oppslag.journalpost.id.db.JournalpostRepository
-import no.nav.helse.rapids_rivers.testsupport.TestRapid
 import org.junit.jupiter.api.Test
 import java.util.UUID
 

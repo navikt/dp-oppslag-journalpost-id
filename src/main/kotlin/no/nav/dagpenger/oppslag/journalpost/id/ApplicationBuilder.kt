@@ -1,12 +1,12 @@
 package no.nav.dagpenger.oppslag.journalpost.id
 
+import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import mu.KotlinLogging
 import no.nav.dagpenger.oppslag.journalpost.id.api.journalpostApi
 import no.nav.dagpenger.oppslag.journalpost.id.db.JournalpostPostgresRepository
 import no.nav.dagpenger.oppslag.journalpost.id.db.PostgresDataSourceBuilder.dataSource
 import no.nav.dagpenger.oppslag.journalpost.id.db.PostgresDataSourceBuilder.runMigration
 import no.nav.helse.rapids_rivers.RapidApplication
-import no.nav.helse.rapids_rivers.RapidsConnection
 
 internal class ApplicationBuilder(config: Map<String, String>) : RapidsConnection.StatusListener {
     companion object {
@@ -16,12 +16,11 @@ internal class ApplicationBuilder(config: Map<String, String>) : RapidsConnectio
     val repository = JournalpostPostgresRepository(dataSource)
 
     private val rapidsConnection: RapidsConnection =
-        RapidApplication.Builder(RapidApplication.RapidApplicationConfig.fromEnv(config))
-            .withKtorModule {
-                journalpostApi(repository)
-            }.build().also { rapidsConnection ->
-                InnsendingFerdigstiltMottak(rapidsConnection, repository)
-            }
+        RapidApplication.create(config) { engine, _ ->
+            engine.application.journalpostApi(repository)
+        }.also { rapidsConnection ->
+            InnsendingFerdigstiltMottak(rapidsConnection, repository)
+        }
 
     init {
         rapidsConnection.register(this)
