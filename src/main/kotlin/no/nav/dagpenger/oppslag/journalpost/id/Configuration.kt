@@ -3,9 +3,7 @@ package no.nav.dagpenger.oppslag.journalpost.id
 import com.natpryce.konfig.ConfigurationMap
 import com.natpryce.konfig.ConfigurationProperties
 import com.natpryce.konfig.EnvironmentVariables
-import com.natpryce.konfig.getValue
 import com.natpryce.konfig.overriding
-import org.apache.kafka.clients.consumer.OffsetResetStrategy
 
 internal object Configuration {
     private val defaultProperties =
