@@ -19,7 +19,7 @@ dependencies {
     testImplementation("io.ktor:ktor-server-test-host-jvm:${libs.versions.ktor.get()}")
     testImplementation(libs.bundles.postgres.test)
     testImplementation(libs.mock.oauth2.server)
-    testImplementation(libs.rapids.and.rivers.test)
+    testImplementation(libs.bundles.naisful.rapid.and.rivers.test)
 }
 
 application {
