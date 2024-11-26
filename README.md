@@ -14,9 +14,7 @@ Saksbehandler må derfor finne øvrige dokumenter i Gosys manuelt, inntil en bed
 for alle journalførte dokumenter i dagpengesaken.
 
 ## Komme i gang
-Gradle brukes som byggverktøy og er bundlet inn. Spotless brukes til linting.
-
-`./gradlew spotlessApply build`
+Gradle brukes som byggverktøy og er bundlet inn. 
 
 ## Henvendelser 
 Spørsmål kan stilles som issues på github.
